@@ -95,7 +95,12 @@ def reload():
     db.commit()
     # Get the csv file from vpngate
     try:
-        response = urllib2.urlopen('http://www.vpngate.net/api/iphone/')
+        try:
+            response = urllib2.urlopen("http://www.vpngate.net/api/iphone", None, 30)
+        except URLError, e:
+            pass
+        except socket.timeout:
+            pass
         #response = open('iphone.csv', 'rb')
         reader = csv.reader(response)
         next(reader) # skip junk
