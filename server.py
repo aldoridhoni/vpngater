@@ -7,7 +7,7 @@
     :copyright: (c) 2015 by Aldo Ridhoni.
     :license: GPL2.
 """
-import sqlite3, sys, csv, urllib2, base64
+import sqlite3, sys, csv, urllib2, base64, os
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 from contextlib import closing
@@ -95,8 +95,8 @@ def reload():
     db.commit()
     # Get the csv file from vpngate
     try:
-        #response = urllib2.urlopen('http://www.vpngate.net/api/iphone/')
-        response = open('iphone.csv', 'rb')
+        response = urllib2.urlopen('http://www.vpngate.net/api/iphone/')
+        #response = open('iphone.csv', 'rb')
         reader = csv.reader(response)
         next(reader) # skip junk
         next(reader) # skip header
@@ -127,4 +127,4 @@ def download(list_id):
     return redirect(url_for('index_list'))
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=int(os.environ['PORT']))
