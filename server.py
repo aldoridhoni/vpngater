@@ -14,7 +14,7 @@ from contextlib import closing
 
 # configuration
 DATABASE = 'vpngate.db'
-DEBUG = True
+DEBUG = False
 SECRET_KEY='development key'
 
 # create our little application :)
