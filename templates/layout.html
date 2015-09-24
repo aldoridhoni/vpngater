@@ -1,0 +1,10 @@
+<!doctype html>
+<title>Vpn List</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='pure_table_style.css') }}">
+<div class=page>
+  <h1>List all available vpn</h1>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+</div>

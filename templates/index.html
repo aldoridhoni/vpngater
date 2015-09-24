@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<form action="/reload" method="get">
+	<input type="submit" value="Reload"/>
+</form>
+<hr>
+<table class="pure-table pure-table-striped">
+<thead>
+	<tr>
+		<th>Hostname</th>
+		<th>IP</th>
+		<th>Speed</th>
+		<th>Country</th>
+		<th></th>
+	</tr>
+</thead>
+<tbody>
+	{% for list in lists %}
+	<tr>
+		<td>{{ list.hostname|safe }}</td>
+		<td>{{ list.ip|safe }}</td>
+		<td>{{ list.speed|safe }}</td>
+		<td>{{ list.country|safe }}</td>
+		<td>
+			<a href="/download/{{ list.id}}"/>Download</a>
+		</td>
+	{% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+	{% endfor %}
+</tbody>
+</table>
+{% endblock %}
