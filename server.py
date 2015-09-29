@@ -98,9 +98,9 @@ def reload():
         try:
             response = urllib2.urlopen("http://www.vpngate.net/api/iphone", None, 30)
         except URLError, e:
-            pass
+            return e
         except socket.timeout:
-            pass
+            return 'timeout'
         #response = open('iphone.csv', 'rb')
         reader = csv.reader(response)
         next(reader) # skip junk
